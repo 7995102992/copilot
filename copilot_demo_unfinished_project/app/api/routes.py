@@ -46,4 +46,12 @@ def delete_task(task_id: int) -> None:
     # TODO (Copilot Agent demo):
     # Use the service to delete the task.
     # If the task does not exist, return HTTP 404 with "Task not found".
-    raise NotImplementedError("TODO: implement route")
+    deleted = service.delete_task(task_id)
+
+    if not deleted:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Task not found",
+        )
+
+    return None

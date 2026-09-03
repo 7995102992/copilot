@@ -10,7 +10,14 @@ class TaskService:
         # TODO (Copilot Edit demo):
         # Normalize surrounding whitespace and reject an empty title.
         # Raise ValueError("Task title cannot be empty") for invalid input.
-        raise NotImplementedError("TODO: implement validate_title")
+        if title is None:
+            raise ValueError("Task title cannot be empty")
+
+        cleaned = title.strip()
+        if cleaned == "":
+            raise ValueError("Task title cannot be empty")
+
+        return cleaned
 
     def list_tasks(self) -> list[Task]:
         return self.repository.list_tasks()
@@ -25,4 +32,4 @@ class TaskService:
     def delete_task(self, task_id: int) -> bool:
         # TODO (Copilot Agent demo):
         # Delegate deletion to the repository.
-        raise NotImplementedError("TODO: implement delete_task")
+        return self.repository.delete_task(task_id)

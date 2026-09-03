@@ -21,10 +21,17 @@ class TaskRepository:
         # TODO (Copilot Edit demo):
         # Create a Task with the next available ID, store it, increment
         # the counter, and return the created task.
-        raise NotImplementedError("TODO: implement create_task")
+        task = Task(id=self._next_id, title=title)
+        self._tasks[self._next_id] = task
+        self._next_id += 1
+        return task
 
     def delete_task(self, task_id: int) -> bool:
         # TODO (Copilot Agent demo):
         # Delete the task when it exists and return True.
         # Return False when the task does not exist.
-        raise NotImplementedError("TODO: implement delete_task")
+        if task_id in self._tasks:
+            del self._tasks[task_id]
+            return True
+
+        return False
